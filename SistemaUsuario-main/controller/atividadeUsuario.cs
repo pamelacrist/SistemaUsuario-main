@@ -34,8 +34,7 @@ namespace Controller
 
         public static void CadastrarPerfil(
             string id,
-            string placa,
-            string motorista
+            string perfil
         ) {
             int idConvert = 0;
             try {

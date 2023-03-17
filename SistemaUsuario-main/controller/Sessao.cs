@@ -2,7 +2,7 @@ namespace Controller
 {
     public class Sessao
     {
-        public static void CadastrarSessao(string id, string nome)
+        public static void CadastrarSessao(string id, int usuario_id, string nome, DateTime data_criacao, DateTime data_expiracao)
         {
             int idConvert = 0;
             try {
@@ -51,7 +51,7 @@ namespace Controller
 
         public static List<Model.Sessao> ListarSessaos()
         {
-            return Model.Sessao.Sessaos;
+            return null;
         }
     }
 }

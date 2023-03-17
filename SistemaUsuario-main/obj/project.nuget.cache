@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mEbu4cvVDIx3voyl3RkQkTd7PP43QyI3MWff27+C/sogJ8AKrwiyZZiyGCOCdvQYCqZnKTGD4fCdYf5SbTCbFQ==",
+  "dgSpecHash": "QrCfC5FSdRGVWdZny+WbVqFF3ApRjc1GRM71c3Q3KUey5lxeSAwgysmFjLGBOft4AS9IvBkectmHscVRwegBpA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pamel\\Downloads\\RotasCaminhaoAvaliacao2\\AtividadeSistemaUsuario\\SistemaUsuario\\SistemaUsuario.csproj",
+  "projectFilePath": "c:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\SistemaUsuario.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pamel\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\pamel\\.nuget\\packages\\k4os.compression.lz4\\1.2.6\\k4os.compression.lz4.1.2.6.nupkg.sha512",

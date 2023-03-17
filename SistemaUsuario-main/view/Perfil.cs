@@ -6,11 +6,11 @@ namespace View
         {
             Console.WriteLine("Cadastrar Perfil");
             Console.WriteLine("Usuario_id:");
-            int usuario_id = Console.ReadLine();
+            string usuario_id = Console.ReadLine();
             Console.WriteLine("Perfil:");
             string perfil = Console.ReadLine();
             try {
-                Controller.Perfil.CadastrarPerfil( placa, usuario_id,perfil);
+                Controller.Perfil.CadastrarPerfil( usuario_id,perfil);
                 Console.WriteLine("Perfil cadastrado com sucesso");
             } catch (Exception e) {
                 Console.WriteLine($"Erro ao cadastrar o perfil: {e.Message}");
@@ -21,13 +21,13 @@ namespace View
         {
             Console.WriteLine("Alterar Perfil");
             Console.WriteLine("Id:");
-            int id = Console.ReadLine();
+            string id = Console.ReadLine();
             Console.WriteLine("Usuario_id:");
-            int usuario_id = Console.ReadLine();
+            string usuario_id = Console.ReadLine();
             Console.WriteLine("Perfil:");
             string perfil = Console.ReadLine();
             try {
-                Controller.Perfil.AlterarPerfil(id, placa, motorista);
+                Controller.Perfil.AlterarPerfil(id, usuario_id, perfil);
                 Console.WriteLine("Perfil alterado com sucesso");
             } catch (Exception e) {
                 Console.WriteLine($"Erro ao alterar o Perfil: {e.Message}");

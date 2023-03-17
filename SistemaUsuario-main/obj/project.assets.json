@@ -1515,11 +1515,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pamel\\Downloads\\RotasCaminhaoAvaliacao2\\AtividadeSistemaUsuario\\SistemaUsuario\\SistemaUsuario.csproj",
+      "projectUniqueName": "c:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\SistemaUsuario.csproj",
       "projectName": "SistemaUsuario",
-      "projectPath": "C:\\Users\\pamel\\Downloads\\RotasCaminhaoAvaliacao2\\AtividadeSistemaUsuario\\SistemaUsuario\\SistemaUsuario.csproj",
+      "projectPath": "c:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\SistemaUsuario.csproj",
       "packagesPath": "C:\\Users\\pamel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pamel\\Downloads\\RotasCaminhaoAvaliacao2\\AtividadeSistemaUsuario\\SistemaUsuario\\obj\\",
+      "outputPath": "c:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pamel\\AppData\\Roaming\\NuGet\\NuGet.Config"

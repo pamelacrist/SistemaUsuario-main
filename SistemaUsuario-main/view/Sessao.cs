@@ -7,17 +7,17 @@ namespace View
             Console.WriteLine("Digite o id da Sessao:");
             string id = Console.ReadLine();
             Console.WriteLine("Digite o id do Usuario:");
-            int usuario_id = Console.ReadLine();
+            int usuario_id = int.Parse(Console.ReadLine());
             Console.WriteLine("Digite o Token:");
             string token = Console.ReadLine();
             Console.WriteLine("Digite a data da criacao:");
-            DateTime data_criacao = Console.ReadLine();
+            DateTime data_criacao = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Digite a data do termino:");
-            DateTime data_expiracao = Console.ReadLine();
+            DateTime data_expiracao = DateTime.Parse(Console.ReadLine());
 
             
             try {
-                Controller.Sessao.CadastrarSessao(id, nome);
+                Controller.Sessao.CadastrarSessao(id, usuario_id,token,data_criacao,data_expiracao);
                 Console.WriteLine("Sessao cadastrada com sucesso");
             } catch (Exception e) {
                 Console.WriteLine($"Erro ao cadastrar Sessao: {e.Message}");

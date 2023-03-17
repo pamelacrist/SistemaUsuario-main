@@ -10,46 +10,46 @@ namespace Model
         public string Perfil { get; set; }
 
         public static List<Perfil> perfils { get; set; } = new List<Perfil>();
+        public string Usuario_id1 { get; }
+        public Perfil Perfil1 { get; }
 
-        public Perfil(int id, int Usuario_id, string Perfil)
+        public Perfil(int id, int usuario_id, string perfil)
         {
-            Id = id;
-            Usuario_id = usuario_id;
-            Perfil = perfil;
+             this.Id = id;
+             this.Usuario_id = usuario_id;
+             this.Perfil = perfil;
 
             perfils.Add(this);
         }
 
+        public Perfil(int usuario_id, string perfil)
+        {
+            this.Usuario_id = usuario_id;
+             this.Perfil = perfil;
+        }
+
         public override string ToString()
         {
-            return $"Id: {Id}, Placa: {Usuario_id}, Motorista: {Perfil}";
+            return $"Id: {Id}, Usuario_id: {Usuario_id}, Perfil: {Perfil}";
         }
 
         public static void AlterarPerfil(
             int id,
-            string placa,
-            string motorista
+            int usuario_id,
+            string perfil
         )
         {
             Perfil Perfil = BuscarPerfil(id);
-            Perfil.Placa = placa;
-            Perfil.Motorista = motorista;
+            Perfil.Usuario_id = usuario_id;
+            Perfil.Perfil = perfil;
         }
 
         public static void ExcluirPerfil(int id)
         {
-            Perfil Perfil = BuscarPerfil(id);
-            Caminhoes.Remove(Perfil);
         }
 
-        public static Perfil BuscarPerfil(int id)
+        public static void BuscarPerfil(int id)
         {
-            Perfil? Perfil = Caminhoes.Find(c => c.Id == id);
-            if (Perfil == null) {
-                throw new Exception("Caminhão não encontrado");
-            }
-
-            return Perfil;
         }
    }
 }
