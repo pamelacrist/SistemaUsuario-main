@@ -10,18 +10,20 @@ namespace Controller
         private string? valor;
 
         public static void CadastrarUsuario(
-            string data,
-            string valor
+            string nome,
+            string email,
+            string senha
         )
         {
-            Model.Usuario usuario = new Model.Usuario(data,valor);
+            Model.Usuario usuario = new Model.Usuario(nome,email,senha);
           
         }
  
         public static void AlterarUsuario(
             string id,
-            string data,
-            string valor
+            string nome,
+            string email,
+            string senha
         )
         {
             int idConvert = 0;
@@ -30,7 +32,7 @@ namespace Controller
             } catch (Exception) {
                 throw new Exception("Id inválido");
             }
-            Model.Usuario.AlterarUsuario(idConvert, data,valor);
+            Model.Usuario.AlterarUsuario(idConvert, nome,email,senha);
         }
  
         public static void ExcluirUsuario(string id)

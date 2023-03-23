@@ -2,27 +2,29 @@ namespace Controller
 {
     public class Sessao
     {
-        public static void CadastrarSessao(string id, int usuario_id, string nome, DateTime data_criacao, DateTime data_expiracao)
+        public static void CadastrarSessao( int usuario_id, string token, DateTime data_criacao, DateTime data_expiracao)
         {
-            int idConvert = 0;
+            int tokenConvert = 0;
             try {
-                idConvert = int.Parse(id);
+                tokenConvert = int.Parse(token);
             } catch (Exception) {
                 throw new Exception("Id inválido");
             }
-            Model.Sessao sessao = new Model.Sessao(idConvert, nome);
+            Model.Sessao sessao = new Model.Sessao(  usuario_id,  tokenConvert,  data_criacao,  data_expiracao);
         }
 
-        public static void AlterarSessao(string id, string nome)
+        public static void AlterarSessao(string id, int usuario_id, string token, DateTime data_criacao, DateTime data_expiracao)
         {
             int idConvert = 0;
+            int tokenConvert = 0;
             try {
                 idConvert = int.Parse(id);
+                tokenConvert = int.Parse(token);
             } catch (Exception) {
                 throw new Exception("Id inválido");
             }
             
-            Model.Sessao.AlterarSessao(idConvert, nome);
+            Model.Sessao.Alterar(idConvert,  usuario_id,  tokenConvert,  data_criacao,  data_expiracao);
         }
 
         public static void ExcluirSessao(string id)
@@ -34,7 +36,7 @@ namespace Controller
                 throw new Exception("Id inválido");
             }
             
-            Model.Sessao.ExcluirSessao(idConvert);
+            Model.Sessao.Excluir(idConvert);
         }
 
         public static Model.Sessao BuscarSessao(string id)
@@ -46,7 +48,7 @@ namespace Controller
                 throw new Exception("Id inválido");
             }
             
-            return Model.Sessao.BuscarSessao(idConvert);
+            return Model.Sessao.Buscar(idConvert);
         }
 
         public static List<Model.Sessao> ListarSessaos()

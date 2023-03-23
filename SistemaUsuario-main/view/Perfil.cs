@@ -10,7 +10,7 @@ namespace View
             Console.WriteLine("Perfil:");
             string perfil = Console.ReadLine();
             try {
-                Controller.Perfil.CadastrarPerfil( usuario_id,perfil);
+                Controller.Perfil.Cadastrar( usuario_id,perfil);
                 Console.WriteLine("Perfil cadastrado com sucesso");
             } catch (Exception e) {
                 Console.WriteLine($"Erro ao cadastrar o perfil: {e.Message}");
@@ -27,7 +27,7 @@ namespace View
             Console.WriteLine("Perfil:");
             string perfil = Console.ReadLine();
             try {
-                Controller.Perfil.AlterarPerfil(id, usuario_id, perfil);
+                Controller.Perfil.Alterar(id, usuario_id, perfil);
                 Console.WriteLine("Perfil alterado com sucesso");
             } catch (Exception e) {
                 Console.WriteLine($"Erro ao alterar o Perfil: {e.Message}");
@@ -40,12 +40,19 @@ namespace View
             Console.WriteLine("Id:");
             string id = Console.ReadLine();
             try {
-                Controller.Perfil.ExcluirPerfil(id);
+                Controller.Perfil.Excluir(id);
                 Console.WriteLine("Perfil excluído com sucesso");
             } catch (Exception e) {
                 Console.WriteLine($"Erro ao excluir Perfil: {e.Message}");
             }
         }
 
+        internal static void ListarPerfil()
+        {
+            Console.WriteLine("Listar Perfil");
+            foreach (Model.Perfil perfil in Controller.Perfil.Listar()) {
+                Console.WriteLine(perfil.ToString());
+            }
+        }
     }
 }

@@ -9,32 +9,26 @@ namespace Model
         private String dataConvert;
 
         public int Id { get; set; }
-        public String Data { get; set; }
-        public String Valor { get; set; }
+        public String Nome { get; set; }
+        public String Email { get; set; }
+        public String Senha { get; set; }
 
         public Perfil Perfil { get; internal set; }
 
-        public Usuario(
-            int id,
-            String data,
-            String valor
-        )
-        {
-            Id = id;
-            Data = data;
-            Valor = valor;
-        }
+      
 
-        public Usuario(String dataConvert, string valor)
+        public Usuario(string nome, string email, string senha)
         {
-            this.dataConvert = dataConvert;
-            this.Valor = valor;
+            this.Nome = nome;
+            this.Email = email;
+            this.Senha = senha;
             string connectionString = "server=localhost;user id=root;database=mydatabase";
             MySqlConnection connection = new MySqlConnection(connectionString);
-            string query = "INSERT INTO Usuario (Column1, Column2) VALUES (@value1, @value2)";
+            string query = "INSERT INTO Usuario (Column1, Column2, Column3) VALUES (@nome, @email,@senha)";
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@value1",  this.dataConvert);
-            command.Parameters.AddWithValue("@value2", this.Valor);
+            command.Parameters.AddWithValue("@nome",  this.Nome);
+            command.Parameters.AddWithValue("@email", this.Email);
+            command.Parameters.AddWithValue("@senha", this.Senha);
             int rowsAffected = command.ExecuteNonQuery();
             connection.Close();
         }
@@ -45,23 +39,25 @@ namespace Model
 
         public override string ToString()
         {
-            return $"Id: {Id}, Data: {Data}, Valor: {Valor} ";
+            return $"Id: {Id}, Nome: {Nome}, Email: {Email} ";
         }
 
         public static void AlterarUsuario(
             int id,
-            String data,
-            string valor
+            string nome,
+            string email,
+            string senha
         )
         {
-            string updateQuery = "UPDATE Usuario SET Valor = @valor, Data = @data WHERE Id = @id";
+            string updateQuery = "UPDATE Usuario SET nome = @nome, email = @email, senha = @senha WHERE Id = @id";
             string connectionString = "server=localhost;user id=root;database=mydatabase";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 MySqlCommand command = new MySqlCommand(updateQuery, connection);
                 command.Parameters.AddWithValue("@id", id);
-                command.Parameters.AddWithValue("@data", data);
-                command.Parameters.AddWithValue("@valor", valor);
+                command.Parameters.AddWithValue("@nome", nome);
+                command.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@senha", senha);
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
@@ -83,8 +79,8 @@ namespace Model
                     Usuario usuarioBuscado = new Usuario()
                     {
                         Id = (int)reader["Id"],
-                        Data = (string)reader["Data"],
-                        Valor = (string)reader["Valor"],
+                        Nome = (string)reader["Nome"],
+                        Email = (string)reader["Email"],
                       
                     };
                      return usuarioBuscado;

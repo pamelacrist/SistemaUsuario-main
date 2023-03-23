@@ -4,8 +4,6 @@ namespace View
     {
         public static void CadastrarUsuario() {
             Console.WriteLine("Cadastrar Usuario");
-            Console.WriteLine("Id:");
-            int id = Console.ReadLine();
             Console.WriteLine("Nome:");
             string nome = Console.ReadLine();
             Console.WriteLine("Email:");
@@ -14,7 +12,7 @@ namespace View
             string senha = Console.ReadLine();
             
             try {
-                Controller.Usuario.CadastrarUsuario( nome, email,Senha);
+                Controller.Usuario.CadastrarUsuario( nome, email,senha);
                 Console.WriteLine("Usuario cadastrada com sucesso");
             } catch (Exception e) {
                 Console.WriteLine(e.Message);
@@ -26,6 +24,7 @@ namespace View
             Console.WriteLine("Id:");
             string id = Console.ReadLine();
             Console.WriteLine("Nome:");
+            string nome = Console.ReadLine();
             Console.WriteLine("Email:");
             string email = Console.ReadLine();
             Console.WriteLine("Senha:");
