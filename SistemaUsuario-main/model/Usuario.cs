@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace Model
 {
@@ -22,10 +22,11 @@ namespace Model
             this.Nome = nome;
             this.Email = email;
             this.Senha = senha;
-            string connectionString = "server=localhost;user id=root;database=mydatabase";
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            string query = "INSERT INTO Usuario (Column1, Column2, Column3) VALUES (@nome, @email,@senha)";
-            MySqlCommand command = new MySqlCommand(query, connection);
+           
+            MySqlConnection connection =  new MySqlConnection(Database.Database.connect); // Cria uma conexão com o banco de dados
+            string query = "INSERT INTO usuarios (nome, email, senha) VALUES (@nome, @email,@senha)";
+            connection.Open(); // Abertura da conexão com o banco de dados
+            MySqlCommand command = new MySqlCommand(query, connection); // Instanciação de um objeto MySqlCommand com a string de instrução SQL e o objeto MySqlConnection como parâmetros
             command.Parameters.AddWithValue("@nome",  this.Nome);
             command.Parameters.AddWithValue("@email", this.Email);
             command.Parameters.AddWithValue("@senha", this.Senha);
@@ -49,16 +50,15 @@ namespace Model
             string senha
         )
         {
-            string updateQuery = "UPDATE Usuario SET nome = @nome, email = @email, senha = @senha WHERE Id = @id";
-            string connectionString = "server=localhost;user id=root;database=mydatabase";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            string updateQuery = "UPDATE usuarios SET nome = @nome, email = @email, senha = @senha WHERE id = @id";
+            using (MySqlConnection connection = new MySqlConnection(Database.Database.connect))
             {
-                MySqlCommand command = new MySqlCommand(updateQuery, connection);
+                MySqlCommand command = new MySqlCommand(updateQuery, connection); // Instanciação de um objeto MySqlCommand com a string de instrução SQL e o objeto MySqlConnection como parâmetros
                 command.Parameters.AddWithValue("@id", id);
                 command.Parameters.AddWithValue("@nome", nome);
                 command.Parameters.AddWithValue("@email", email);
                 command.Parameters.AddWithValue("@senha", senha);
-                connection.Open();
+                connection.Open(); // Abertura da conexão com o banco de dados
                 command.ExecuteNonQuery();
                 connection.Close();
             }
@@ -66,21 +66,22 @@ namespace Model
 
         public static Usuario BuscarUsuario(int id)
         {
-            string connectionString = "server=localhost;user id=root;database=mydatabase";
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection =  new MySqlConnection(Database.Database.connect); // Cria uma conexão com o banco de dados
 
-            string selectQuery = "SELECT * FROM Usuario WHERE Id = @id";
-            MySqlCommand command = new MySqlCommand(selectQuery, connection);
+            string selectQuery = "SELECT * FROM usuarios WHERE id = @id";
+            connection.Open(); // Abertura da conexão com o banco de dados
+            MySqlCommand command = new MySqlCommand(selectQuery, connection); // Instanciação de um objeto MySqlCommand com a string de instrução SQL e o objeto MySqlConnection como parâmetros
             command.Parameters.AddWithValue("@id", id);
+            // Executa a query e adiciona os perfis encontrados na lista
             using (MySqlDataReader reader = command.ExecuteReader())
             {
-                if (reader.Read())
+                if (reader.Read()) // Verificação se há uma linha de dados retornada
                 {
                     Usuario usuarioBuscado = new Usuario()
                     {
-                        Id = (int)reader["Id"],
-                        Nome = (string)reader["Nome"],
-                        Email = (string)reader["Email"],
+                        Id = (int)reader["id"],
+                        Nome = (string)reader["nome"],
+                        Email = (string)reader["email"],
                       
                     };
                      return usuarioBuscado;
@@ -91,16 +92,42 @@ namespace Model
         }
         public static Usuario RemoverUsuario(int id)
         {
-            string connectionString = "server=localhost;user id=root;database=mydatabase";
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            string selectQuery = "DELETE FROM Usuario WHERE Id = @id";
-            MySqlCommand command = new MySqlCommand(selectQuery, connection);
+            MySqlConnection connection =  new MySqlConnection(Database.Database.connect); // Cria uma conexão com o banco de dados
+            string selectQuery = "DELETE FROM usuarios WHERE Id = @id";
+            MySqlCommand command = new MySqlCommand(selectQuery, connection); // Instanciação de um objeto MySqlCommand com a string de instrução SQL e o objeto MySqlConnection como parâmetros
             command.Parameters.AddWithValue("@id", id);
-            connection.Open();
+            connection.Open(); // Abertura da conexão com o banco de dados
             command.ExecuteNonQuery();
             connection.Close();
             return null;
         }
 
+        internal static Usuario BuscarPorEmail(string email)
+        {
+            MySqlConnection connection =  new MySqlConnection(Database.Database.connect); // Cria uma conexão com o banco de dados
+
+            string selectQuery = "SELECT * FROM usuarios WHERE email = @email";
+            connection.Open(); // Abertura da conexão com o banco de dados
+            MySqlCommand command = new MySqlCommand(selectQuery, connection); // Instanciação de um objeto MySqlCommand com a string de instrução SQL e o objeto MySqlConnection como parâmetros
+            command.Parameters.AddWithValue("@email", email);
+            // Executa a query e adiciona os perfis encontrados na lista
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read()) // Verificação se há uma linha de dados retornada
+                {
+                    Usuario usuarioBuscado = new Usuario()
+                    {
+                        Id = (int)reader["id"],
+                        Nome = (string)reader["nome"],
+                        Email = (string)reader["email"],
+                        Senha = (string)reader["senha"],
+                      
+                    };
+                     return usuarioBuscado;
+                }
+            }
+            connection.Close();
+            return null;
+        }
     }
 }

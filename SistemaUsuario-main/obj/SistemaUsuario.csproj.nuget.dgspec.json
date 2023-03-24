@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\SistemaUsuario.csproj": {}
+    "C:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\SistemaUsuario.csproj": {}
   },
   "projects": {
-    "c:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\SistemaUsuario.csproj": {
+    "C:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\SistemaUsuario.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\SistemaUsuario.csproj",
+        "projectUniqueName": "C:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\SistemaUsuario.csproj",
         "projectName": "SistemaUsuario",
-        "projectPath": "c:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\SistemaUsuario.csproj",
+        "projectPath": "C:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\SistemaUsuario.csproj",
         "packagesPath": "C:\\Users\\pamel\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\obj\\",
+        "outputPath": "C:\\Users\\pamel\\Downloads\\SistemaUsuario-main\\SistemaUsuario-main\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pamel\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,9 +38,23 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "MySql.Data": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.32.1, )"
+              "version": "[7.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Pomelo.EntityFrameworkCore.Mysql.Design": {
+              "target": "Package",
+              "version": "[1.1.2, )"
             }
           },
           "imports": [
@@ -55,6 +69,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

@@ -8,7 +8,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/SistemaUsuario/SistemaUsuario.csproj",
+                "${workspaceFolder}/SistemaUsuario-main/SistemaUsuario.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

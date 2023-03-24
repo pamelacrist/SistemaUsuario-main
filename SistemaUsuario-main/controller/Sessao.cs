@@ -1,33 +1,12 @@
+using System;
+using System.Collections.Generic;
+
 namespace Controller
 {
     public class Sessao
     {
-        public static void CadastrarSessao( int usuario_id, string token, DateTime data_criacao, DateTime data_expiracao)
-        {
-            int tokenConvert = 0;
-            try {
-                tokenConvert = int.Parse(token);
-            } catch (Exception) {
-                throw new Exception("Id inválido");
-            }
-            Model.Sessao sessao = new Model.Sessao(  usuario_id,  tokenConvert,  data_criacao,  data_expiracao);
-        }
-
-        public static void AlterarSessao(string id, int usuario_id, string token, DateTime data_criacao, DateTime data_expiracao)
-        {
-            int idConvert = 0;
-            int tokenConvert = 0;
-            try {
-                idConvert = int.Parse(id);
-                tokenConvert = int.Parse(token);
-            } catch (Exception) {
-                throw new Exception("Id inválido");
-            }
-            
-            Model.Sessao.Alterar(idConvert,  usuario_id,  tokenConvert,  data_criacao,  data_expiracao);
-        }
-
-        public static void ExcluirSessao(string id)
+        // O método LogOff recebe um id do usuário e faz o logoff da sessão correspondente.
+        public static void LogOff(string id)
         {
             int idConvert = 0;
             try {
@@ -35,10 +14,9 @@ namespace Controller
             } catch (Exception) {
                 throw new Exception("Id inválido");
             }
-            
-            Model.Sessao.Excluir(idConvert);
+            Model.Sessao.Alterar(idConvert,new DateTime());
         }
-
+        // O método BuscarSessao recebe um id da sessão e retorna a sessão correspondente.
         public static Model.Sessao BuscarSessao(string id)
         {
             int idConvert = 0;
@@ -50,10 +28,28 @@ namespace Controller
             
             return Model.Sessao.Buscar(idConvert);
         }
-
-        public static List<Model.Sessao> ListarSessaos()
+        // O método ListarSessaos lista todas as sessões ativas.
+        public static List<string> ListarSessaos()
         {
-            return null;
+            return Model.Sessao.Listar();
+        }
+        // O método Login recebe um email e uma senha e retorna a sessão correspondente ao usuário.
+        internal static Model.Sessao Login(string email, string senha)
+        {
+            return Model.Sessao.Login(email,senha);
+           
+        }
+
+        // O método ListarTotal lista todas as sessões existentes.
+        internal static IEnumerable<string> ListarTotal()
+        {
+            return Model.Sessao.ListarTotal();
+        }
+
+        // O método ListarAtivas lista todas as sessões ativas.
+        internal static IEnumerable<string> ListarAtivas()
+        {
+        return Model.Sessao.ListarAtivas();
         }
     }
 }
